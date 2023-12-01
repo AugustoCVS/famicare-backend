@@ -8,113 +8,119 @@ Instruções para inicialização:
 
 3 - Aplique os seguintes comandos para a criação das tabelas: 
 
-CREATE DATABASE famicare;
+[Uploading Tabelas{\rtf1\ansi\ansicpg1252\cocoartf2758
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
 
-use famicare;
-
-CREATE TABLE family (
-    id SMALLINT NOT NULL AUTO_INCREMENT,
-    name varchar(100) not null,
-    email varchar(100) not null unique,
-    password varchar(250) not null,
-    confirm_password varchar(250) not null,
-    PRIMARY KEY (id)
-);
-
-alter table family add ativo tinyint;
-
-CREATE TABLE relative (
-    id SMALLINT NOT NULL AUTO_INCREMENT,
-    name varchar(100) not null,
-    email varchar(100) not null unique,
-    cpf varchar(100) not null unique,
-    password varchar(250) not null,
-	confirm_password varchar(250) not null,
-    
-    PRIMARY KEY (id)
-);
-
-ALTER TABLE relative
-ADD COLUMN id_family SMALLINT,
-ADD FOREIGN KEY (id_family) REFERENCES family(id);
-
-
-CREATE TABLE historic (
-    id SMALLINT NOT NULL AUTO_INCREMENT,
-    diagnostic varchar(250) not null,
-    treatment varchar(250) not null,
-    allergies varchar(250) not null,
-    results varchar(250) not null,
-    
-    PRIMARY KEY (id)
-);
-
-ALTER TABLE historic
-ADD COLUMN id_relative SMALLINT,
-ADD FOREIGN KEY (id_relative) REFERENCES relative(id);
-
-CREATE TABLE appointments (
-    id SMALLINT NOT NULL AUTO_INCREMENT,
-    doctor varchar(250) not null,
-    diagnostic varchar(250) not null,
-    treatment varchar(250) not null,
-    medicines varchar(250) not null,
-    results varchar(250) not null,
-    observations varchar(250) not null,
-    
-    PRIMARY KEY (id)
-);
-
-ALTER TABLE appointments
-ADD COLUMN id_relative SMALLINT,
-ADD FOREIGN KEY (id_relative) REFERENCES relative(id);
-
-CREATE TABLE exams (
-    id SMALLINT NOT NULL AUTO_INCREMENT,
-    type varchar(250) not null,
-    date varchar(250) not null,
-    result varchar(250) not null,
-    observations varchar(250) not null,
-    doctor varchar(250) not null,
-    
-    PRIMARY KEY (id)
-);
-
-ALTER TABLE exams
-ADD COLUMN id_relative SMALLINT,
-ADD FOREIGN KEY (id_relative) REFERENCES relative(id);
-
-CREATE TABLE prescriptions (
-    id SMALLINT NOT NULL AUTO_INCREMENT,
-    date varchar(250) not null,
-    medicine varchar(250) not null,
-    dosage varchar(250) not null,
-    duration varchar(250) not null,
-	instructions varchar(250) not null,
-    doctor varchar(250) not null,
-    
-    PRIMARY KEY (id)
-);
-
-ALTER TABLE prescriptions
-ADD COLUMN id_relative SMALLINT,
-ADD FOREIGN KEY (id_relative) REFERENCES relative(id);
-
-CREATE TABLE agenda (
-    id SMALLINT NOT NULL AUTO_INCREMENT,
-    type varchar(250) not null,
-    date varchar(250) not null,
-    doctor varchar(250) not null,
-    local varchar(250) not null,
-	observations varchar(250) not null,
-    
-    PRIMARY KEY (id)
-);
-
-ALTER TABLE agenda
-ADD COLUMN id_relative SMALLINT,
-ADD FOREIGN KEY (id_relative) REFERENCES relative(id);
-
+\f0\fs24 \cf0 CREATE DATABASE famicare;\
+\
+use famicare;\
+\
+CREATE TABLE family (\
+    id SMALLINT NOT NULL AUTO_INCREMENT,\
+    name varchar(100) not null,\
+    email varchar(100) not null unique,\
+    password varchar(250) not null,\
+    confirm_password varchar(250) not null,\
+    PRIMARY KEY (id)\
+);\
+\
+alter table family add ativo tinyint;\
+\
+CREATE TABLE relative (\
+    id SMALLINT NOT NULL AUTO_INCREMENT,\
+    name varchar(100) not null,\
+    email varchar(100) not null unique,\
+    cpf varchar(100) not null unique,\
+    password varchar(250) not null,\
+	confirm_password varchar(250) not null,\
+    \
+    PRIMARY KEY (id)\
+);\
+\
+ALTER TABLE relative\
+ADD COLUMN id_family SMALLINT,\
+ADD FOREIGN KEY (id_family) REFERENCES family(id);\
+\
+\
+CREATE TABLE historic (\
+    id SMALLINT NOT NULL AUTO_INCREMENT,\
+    diagnostic varchar(250) not null,\
+    treatment varchar(250) not null,\
+    allergies varchar(250) not null,\
+    results varchar(250) not null,\
+    \
+    PRIMARY KEY (id)\
+);\
+\
+ALTER TABLE historic\
+ADD COLUMN id_relative SMALLINT,\
+ADD FOREIGN KEY (id_relative) REFERENCES relative(id);\
+\
+CREATE TABLE appointments (\
+    id SMALLINT NOT NULL AUTO_INCREMENT,\
+    doctor varchar(250) not null,\
+    diagnostic varchar(250) not null,\
+    treatment varchar(250) not null,\
+    medicines varchar(250) not null,\
+    results varchar(250) not null,\
+    observations varchar(250) not null,\
+    \
+    PRIMARY KEY (id)\
+);\
+\
+ALTER TABLE appointments\
+ADD COLUMN id_relative SMALLINT,\
+ADD FOREIGN KEY (id_relative) REFERENCES relative(id);\
+\
+CREATE TABLE exams (\
+    id SMALLINT NOT NULL AUTO_INCREMENT,\
+    type varchar(250) not null,\
+    date varchar(250) not null,\
+    result varchar(250) not null,\
+    observations varchar(250) not null,\
+    doctor varchar(250) not null,\
+    \
+    PRIMARY KEY (id)\
+);\
+\
+ALTER TABLE exams\
+ADD COLUMN id_relative SMALLINT,\
+ADD FOREIGN KEY (id_relative) REFERENCES relative(id);\
+\
+CREATE TABLE prescriptions (\
+    id SMALLINT NOT NULL AUTO_INCREMENT,\
+    date varchar(250) not null,\
+    medicine varchar(250) not null,\
+    dosage varchar(250) not null,\
+    duration varchar(250) not null,\
+	instructions varchar(250) not null,\
+    doctor varchar(250) not null,\
+    \
+    PRIMARY KEY (id)\
+);\
+\
+ALTER TABLE prescriptions\
+ADD COLUMN id_relative SMALLINT,\
+ADD FOREIGN KEY (id_relative) REFERENCES relative(id);\
+\
+CREATE TABLE agenda (\
+    id SMALLINT NOT NULL AUTO_INCREMENT,\
+    type varchar(250) not null,\
+    date varchar(250) not null,\
+    doctor varchar(250) not null,\
+    local varchar(250) not null,\
+	observations varchar(250) not null,\
+    \
+    PRIMARY KEY (id)\
+);\
+\
+ALTER TABLE agenda\
+ADD COLUMN id_relative SMALLINT,\
+ADD FOREIGN KEY (id_relative) REFERENCES relative(id);}.rtf…]()
 
 
 4 - Baixe o projeto e importe-o para a sua IDE de preferência
