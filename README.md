@@ -8,7 +8,7 @@ Instruções para inicialização:
 
 3 - Aplique os seguintes comandos para a criação das tabelas: 
 
-\CREATE DATABASE famicare;\
+CREATE DATABASE famicare;\
 \
 use famicare;\
 \
